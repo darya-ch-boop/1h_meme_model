@@ -38,6 +38,9 @@ model.eval()
 def get_binance_url(symbol="ETHUSDT", interval="1m", limit=1000):
     return f"https://api.binance.com/api/v3/klines?symbol={symbol}&interval={interval}&limit={limit}"
 
+@app.route("/healthcheck")
+def healthcheck():
+    return Response(json.dumps({"status": "ok"}), status=200, mimetype='application/json')
 
 @app.route("/inference/<string:token>")
 def get_inference(token):
